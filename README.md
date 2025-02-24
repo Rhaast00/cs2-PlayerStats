@@ -7,7 +7,7 @@
 ## 🎮 CS2 Plugin - Game State Integration
 
 ### Overview
-This plugin integrates with Counter-Strike 2 (CS2) to provide real-time game state information and enhance your gaming experience. It allows you to track various in-game statistics and events while playing CS2.
+This plugin integrates with Counter-Strike 2 (CS2) to provide real-time game state information and enhance your gaming experience. It allows you to track various in-game statistics and events while playing CS2
 
 ### Features
 - Real-time game state monitoring
