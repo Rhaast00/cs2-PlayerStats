@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Platforms>AnyCPU</Platforms>
+    <OutputPath>plugin</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <GenerateDependencyFile>true</GenerateDependencyFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CounterStrikeSharp.API" Version="1.0.142" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.2" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <ItemGroup>
+      <FilesToDelete Include="$(OutputPath)\**\*.*" Exclude="$(OutputPath)\PlayerStats.dll;$(OutputPath)\PlayerStats.deps.json;$(OutputPath)\PlayerStats.pdb;$(OutputPath)\settings.sqlite"/>
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" />
+    <RemoveDir Directories="$(OutputPath)\runtimes;$(OutputPath)\ref;$(OutputPath)\cs;$(OutputPath)\de;$(OutputPath)\es;$(OutputPath)\fr;$(OutputPath)\it;$(OutputPath)\ja;$(OutputPath)\ko;$(OutputPath)\ru;$(OutputPath)\zh-Hans;$(OutputPath)\zh-Hant" />
+    <WriteLinesToFile File="$(OutputPath)\settings.sqlite" Lines="" Overwrite="true" Condition="!Exists('$(OutputPath)\settings.sqlite')" />
+  </Target>
+
+</Project> 
